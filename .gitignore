@@ -17,8 +17,6 @@ target/
 **/test_snapshots/
 
 # Env & secrets
-.env
-.env.local
 .env.*.local
 *.pem
 *.key
@@ -37,7 +35,6 @@ test-results/
 # Editor / OS
 .DS_Store
 .idea/
-.vscode/*
 !.vscode/extensions.json
 *.log
 npm-debug.log*
@@ -62,5 +59,5 @@ Memory.md
 
 # Vercel
 .vercel
-.env*
 apps/api/scratch/
+config.bat

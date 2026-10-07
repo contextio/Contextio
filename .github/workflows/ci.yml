@@ -45,6 +45,12 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Verify published LCP document (live demo tenant)
+        uses: ./.github/actions/verify-lcp
+        with:
+          domain: contextio.xyz
+          expected-hash: "bf3ca757eac32b2161dca341fbe5560f22d21c532dc3c64bf8ec5144b2827954"
+
       - name: Dependency audit (non-blocking)
         run: pnpm audit --audit-level high || true
 
