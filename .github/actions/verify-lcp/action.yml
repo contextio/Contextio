@@ -1,0 +1,43 @@
+name: 'Verify Legal Context Protocol (LCP) Document'
+description: 'Fetches and cryptographically verifies a published Contextio LCP document against RFC 8785 canonical schema and optional expected SHA-256 hash in CI.'
+author: 'Contextio'
+
+inputs:
+  domain:
+    description: 'Tenant domain (e.g. contextio.xyz) to query /.well-known/contextio-legal-context.json'
+    required: false
+    default: ''
+  url:
+    description: 'Direct URL to the LCP JSON document (overrides domain)'
+    required: false
+    default: ''
+  expected-hash:
+    description: 'Optional expected SHA-256 hex digest to assert against'
+    required: false
+    default: ''
+
+outputs:
+  document-hash:
+    description: 'Derived canonical SHA-256 hex digest of the document'
+    value: ${{ steps.verify-step.outputs.document-hash }}
+  version:
+    description: 'Document version number reported in the verified document'
+    value: ${{ steps.verify-step.outputs.version }}
+  context-id:
+    description: 'Unique context UUID reported in the verified document'
+    value: ${{ steps.verify-step.outputs.context-id }}
+  tenant-domain:
+    description: 'Tenant domain reported in the verified document'
+    value: ${{ steps.verify-step.outputs.tenant-domain }}
+
+runs:
+  using: 'composite'
+  steps:
+    - id: verify-step
+      shell: bash
+      env:
+        INPUT_DOMAIN: ${{ inputs.domain }}
+        INPUT_URL: ${{ inputs.url }}
+        INPUT_EXPECTED_HASH: ${{ inputs.expected-hash }}
+      run: |
+        node "${{ github.action_path }}/verify.mjs"

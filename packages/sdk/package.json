@@ -1,7 +1,7 @@
 {
   "name": "contextio-sdk",
   "version": "0.3.0",
-  "description": "Client SDK for Contextio — agentic treasury & payroll on Stellar. Typed API client, Stellar wallet sign-in (SEP-53), and Legal Context Protocol (LCP) hashing/verification.",
+  "description": "Client SDK for Contextio \u2014 agentic treasury & payroll on Stellar. Typed API client, Stellar wallet sign-in (SEP-53), and Legal Context Protocol (LCP) hashing/verification.",
   "license": "Apache-2.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -13,7 +13,10 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "sideEffects": false,
   "keywords": [
     "stellar",
@@ -39,7 +42,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "node init && tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint \"src/**/*.ts\"",
     "test": "vitest run",
